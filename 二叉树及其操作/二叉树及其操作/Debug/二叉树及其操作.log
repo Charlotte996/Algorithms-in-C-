@@ -1,0 +1,14 @@
+﻿  源.cpp
+d:\users\10902\source\repos\二叉树及其操作\二叉树及其操作\binary_tree.h(185): warning C4018: “>”: 有符号/无符号不匹配
+  d:\users\10902\source\repos\二叉树及其操作\二叉树及其操作\binary_tree.h(182): note: 编译 类 模板 成员函数 "void binary_tree<char>::tree_insert(tree_node<T> *)" 时
+          with
+          [
+              T=char
+          ]
+  d:\users\10902\source\repos\二叉树及其操作\二叉树及其操作\源.cpp(5): note: 参见对正在编译的函数 模板 实例化“void binary_tree<char>::tree_insert(tree_node<T> *)”的引用
+          with
+          [
+              T=char
+          ]
+  d:\users\10902\source\repos\二叉树及其操作\二叉树及其操作\源.cpp(4): note: 参见对正在编译的 类 模板 实例化 "binary_tree<char>" 的引用
+  二叉树及其操作.vcxproj -> D:\Users\10902\source\repos\二叉树及其操作\Debug\二叉树及其操作.exe

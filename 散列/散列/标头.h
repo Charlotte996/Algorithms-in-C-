@@ -1,0 +1,163 @@
+#ifndef HASH_TABLE_H
+#define HASH_TABLE_H
+#include <vector>
+#include <list>
+#include <utility>
+#include <stdexcept>
+#include <algorithm>
+#include <functional>
+
+using std::vector;
+using std::list;
+using std::hash;
+using std::pair;
+
+template <typename T>
+class Sgl_SashTable
+{
+	typedef typename list<T>::iterator iterator;
+public:
+	Sgl_HashTable()
+	{
+		resize();
+	}
+
+	Sgl_HashTable(const size_t &temp_bucket)
+	{
+		bucket = temp_bucket;
+		elem resize(bucket);
+	}
+
+	~Sig_HashTable() = default;
+
+	size_t Hash_Val(const T &x)
+	{
+		return hash(T)()(x) % bucket;
+	}
+
+	void insert(const T &x)
+	{
+		auto Hval = Hash_Val;
+		elem[Hval].push_back(x);
+	}
+
+	pair<size T, literator> search(const T &x)
+	{
+		auto Hval = Havl_Val(x);
+		auto pos = find(elem[Hval].begin(), elem[Hval].end(), x);
+
+		try
+		{
+			if (pos == elem[Hval].end())
+			{
+				throw runtime_error("The element was not found");
+			}
+		}
+		catch (runtime_error &err)
+		{
+			cout << error.what() << endl;
+		}
+		return std::make_pair(Hval, pos);
+	}
+
+	void erase_one(const T &x)
+	{
+		auto p = search(x);
+		auto pos = p.second;
+
+		if (pos != elem[p.first].end())
+		{
+			while (pos != elem[p.first].end() && *pos == x)
+			{
+				pos = elem[p.first].erase(pos);
+			}
+		}
+	}
+
+private:
+	vector <list<T>> elem;
+	size_t bucket = 100;
+	void resize()
+	{
+		elem.resize(bucket);
+	}
+};
+
+template<typename key, typename T>
+class Dbl_HashTable
+{
+	typedef typename list<pair<key, T>>::iterator iterator;
+public:
+	Dbl_HashTable()
+	{
+		resize();
+	}
+	Dbl_HashTable(const key &temp_bucket)
+	{
+		bucket = temp_bucket;
+		elem.resize(bucket);
+	}
+
+	size_t Hash_Val(const key &x)
+	{
+		return hash(T)()(x) % bucket;
+	}
+
+	void insert(const key &x1, const T &x2) 
+	{
+		auto Hval = Hash_Val(x1);
+		elem[Hval].push_back(std::make_pair(x1, x2));
+	}
+
+	pair(size_t, iterator)search(const key &x) 
+	{
+		auto Hval = Hash_Val(x);
+		auto pos = find_if(elem[Hval].begin(), elem[Hval].end(), [&](pair<key, T>temp_p)->bool {return temp_p.first == x});
+		
+		try 
+		{
+			if (pos == elem[Hval].end()) 
+			{
+				throw runtime_error("The element was not found");
+			}
+		}
+		catch (runtime_error &err)
+		{
+			cout << error.what() << endl;
+		}
+		return std::make_pair(Hval, pos);
+	}
+
+	void erase_one(const key &x)
+	{
+		auto p = search(x);
+
+		if (p.second!= elem[p.first].end())
+		{
+				elem[p.first].erase(p.second);
+		}
+	}
+
+	void erase(const key &x)
+	{
+		auto p = search(x);
+		auto pos = p.second;
+
+		if (pos != elem[p.first].end())
+		{
+			while (pos != elem[p.first].end() && *pos->first == x)
+			{
+				pos = elem[p.first].erase(pos);
+			}
+		}
+	}
+private:
+	vector <list<T>> elem;
+	size_t bucket = 100;
+	void resize()
+	{
+		elem.resize(bucket);
+	}
+};
+
+#endif
